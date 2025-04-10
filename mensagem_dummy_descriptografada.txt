@@ -1,0 +1,51 @@
+Olá, esta é uma mensagem secreta da disciplina de Criptografia em Java da USJT!
+Estamos testando a criptografia simétrica e também uma versão dummy personalizada.
+
+from cryptography.fernet import Fernet
+
+# Gerar chave simétrica e salvar no disco
+def gerar_chave():
+    chave = Fernet.generate_key()
+    with open("chave.simetrica", "wb") as f:
+        f.write(chave)
+    return chave
+
+# Carregar chave do disco
+def carregar_chave():
+    with open("chave.simetrica", "rb") as f:
+        return f.read()
+
+# Ler texto do arquivo de entrada
+def ler_texto_arquivo(nome_arquivo):
+    with open(nome_arquivo, "r", encoding="utf-8") as f:
+        return f.read()
+
+# Criptografar usando Fernet
+def criptografar(mensagem, chave):
+    f = Fernet(chave)
+    return f.encrypt(mensagem.encode())
+
+# Descriptografar
+def descriptografar(mensagem_criptografada, chave):
+    f = Fernet(chave)
+    return f.decrypt(mensagem_criptografada).decode()
+
+# ============ EXECUÇÃO PRINCIPAL ============
+
+# Tenta carregar a chave, ou gera uma nova
+try:
+    chave = carregar_chave()
+except FileNotFoundError:
+    chave = gerar_chave()
+
+# Lê o texto original do arquivo
+texto_claro = ler_texto_arquivo("mensagem.txt")
+
+# Criptografa e descriptografa
+texto_cifrado = criptografar(texto_claro, chave)
+texto_decifrado = descriptografar(texto_cifrado, chave)
+
+# Mostra os resultados no terminal
+print("Texto original:\n", texto_claro)
+print("\nTexto criptografado:\n", texto_cifrado.decode())
+print("\nTexto descriptografado:\n", texto_decifrado)
