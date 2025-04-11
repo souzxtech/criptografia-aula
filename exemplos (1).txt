@@ -1,0 +1,14 @@
+CRIPTOGRAFIA COM CHAVE SIMÉTRICA (AES)
+- Chave: 1234567890123456
+- Texto original: Olá o Felipe Souza estuda na USJT
+- Resultado criptografado: <base64>
+- Resultado descriptografado: Olá o Felipe Souza estuda na USJT
+
+CRIPTOGRAFIA COM CHAVE ASSIMÉTRICA (RSA)
+- Texto original: Olá o Felipe Souza estuda na USJT
+- Resultado criptografado: <base64>
+- Resultado descriptografado: Olá o Felipe Souza estuda na USJT
+
+FUNÇÃO HASH (SHA-256)
+- Texto: Olá o Felipe Souza estuda na USJT
+- Resultado: <hash_sha256>
